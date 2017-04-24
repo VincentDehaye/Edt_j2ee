@@ -24,6 +24,10 @@
         <servlet-name>Horaires</servlet-name>
         <servlet-class>servlets.Horaires</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Creneaux</servlet-name>
+        <servlet-class>servlets.Creneaux</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -44,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>Horaires</servlet-name>
         <url-pattern>/horaires</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Creneaux</servlet-name>
+        <url-pattern>/creneaux</url-pattern>
     </servlet-mapping>
     <listener>
         <listener-class>config.InitialisationDaoFactory</listener-class>

@@ -11,10 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import dao.InterfaceDao.EtudiantDao;
-import dao.InterfaceDao.HoraireDao;
-import dao.InterfaceDao.ProfesseurDao;
-import dao.InterfaceDao.UvDao;
+import dao.InterfaceDao.*;
 
 public class DAOFactory {
 
@@ -90,4 +87,6 @@ public class DAOFactory {
     public UvDao getUvDao() { return new UvDaoImpl( this ); }
 
     public HoraireDao getHoraireDao() { return new HoraireDaoImpl( this ); }
+
+    public CreneauDao getCreneauDao() { return new CreneauDaoImpl( this ); }
 }
