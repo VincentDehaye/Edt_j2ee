@@ -58,11 +58,11 @@ public class HoraireDaoImpl implements HoraireDao {
     }
 
     @Override
-    public HoraireEntity find( String jour) throws DAOException{
+    public List<HoraireEntity> find( String jour) throws DAOException{
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        HoraireEntity hor = null;
+        List<HoraireEntity> listHor = new ArrayList<HoraireEntity>();
         String SQL_SELECT_PAR_EMAIL = "SELECT * FROM horaire WHERE Jour_semaine = ?";
 
         try {
@@ -71,15 +71,15 @@ public class HoraireDaoImpl implements HoraireDao {
             preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_EMAIL, false, jour );
             resultSet = preparedStatement.executeQuery();
         /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
-            if ( resultSet.next() ) {
-                hor = map( resultSet );
+            while ( resultSet.next() ) {
+                listHor.add(map(resultSet));
             }
         } catch ( SQLException e ) {
             throw new DAOException( e );
         } finally {
             fermeturesSilencieuses( resultSet, preparedStatement, connexion );
         }
-        return hor;
+        return listHor;
     }
 
     @Override

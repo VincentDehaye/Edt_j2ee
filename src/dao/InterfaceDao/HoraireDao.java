@@ -12,7 +12,7 @@ public interface HoraireDao {
 
     List<HoraireEntity> findAll() throws DAOException;
 
-    HoraireEntity find( String jour) throws DAOException;
+    List<HoraireEntity> find( String jour) throws DAOException;
 
     void create(HoraireEntity etu) throws DAOException;
 
