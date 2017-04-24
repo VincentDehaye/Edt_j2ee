@@ -20,6 +20,10 @@
         <servlet-name>Uvs</servlet-name>
         <servlet-class>servlets.Uvs</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Participations</servlet-name>
+        <servlet-class>servlets.Participations</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>Uvs</servlet-name>
         <url-pattern>/uvs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Participations</servlet-name>
+        <url-pattern>/participations</url-pattern>
     </servlet-mapping>
     <listener>
         <listener-class>config.InitialisationDaoFactory</listener-class>

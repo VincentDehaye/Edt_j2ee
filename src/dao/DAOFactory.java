@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import dao.InterfaceDao.EtudiantDao;
+import dao.InterfaceDao.ParticipationDao;
 import dao.InterfaceDao.ProfesseurDao;
 import dao.InterfaceDao.UvDao;
 
@@ -87,4 +88,6 @@ public class DAOFactory {
     public ProfesseurDao getProfesseurDao() { return new ProfesseurDaoImpl( this ); }
 
     public UvDao getUvDao() { return new UvDaoImpl( this ); }
+
+    public ParticipationDao getParticipationDao() { return new ParticipationDaoImpl( this ); }
 }
