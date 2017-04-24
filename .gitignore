@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-.idea
-lib
-out
-beans
-dao.properties
-Edt_jee.iml
-=======
 # Ignore everything
 *
 
@@ -15,4 +7,3 @@ Edt_jee.iml
 !src/**
 !web
 !web/**
->>>>>>> 87d84b2e0ec1ce229cb0fa544b857e128bb508c6
