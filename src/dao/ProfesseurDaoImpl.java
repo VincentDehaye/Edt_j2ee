@@ -112,4 +112,26 @@ public class ProfesseurDaoImpl implements ProfesseurDao {
             fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
         }
     }
+
+    @Override
+    public void delete(ProfesseurEntity prof) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+        String SQL_DELETE = "DELETE FROM professeur WHERE IdProfesseur = ?";
+        try {
+        /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_DELETE, false, prof.getIdProfesseur());
+            int statut = preparedStatement.executeUpdate();
+        /* Analyse du statut retourné par la requête d'insertion */
+            if (statut == 0) {
+                throw new DAOException("Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table.");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+        }
+    }
 }

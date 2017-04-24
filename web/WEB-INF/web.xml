@@ -28,7 +28,10 @@
         <servlet-name>Creneaux</servlet-name>
         <servlet-class>servlets.Creneaux</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>Participations</servlet-name>
+        <servlet-class>servlets.Participations</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -52,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>Creneaux</servlet-name>
         <url-pattern>/creneaux</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Participations</servlet-name>
+        <url-pattern>/participations</url-pattern>
     </servlet-mapping>
     <listener>
         <listener-class>config.InitialisationDaoFactory</listener-class>

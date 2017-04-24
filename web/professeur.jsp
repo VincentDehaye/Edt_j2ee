@@ -52,5 +52,23 @@
         }
     %>
 
+    <%
+        obj = request.getAttribute("deleted");
+        if(obj != null){
+
+    %> <p>Professeur supprimé</p>
+    <%
+        }
+    %>
+
+    <%
+        obj = request.getAttribute("created");
+        if(obj != null){
+
+    %> <p>Professeur créé</p>
+    <%
+        }
+    %>
+
 </body>
 </html>
