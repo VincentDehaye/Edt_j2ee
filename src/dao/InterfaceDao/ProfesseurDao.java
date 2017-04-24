@@ -14,4 +14,6 @@ public interface ProfesseurDao {
     ProfesseurEntity find( String mail) throws DAOException;
 
     void create(ProfesseurEntity etu) throws DAOException;
+
+    void delete(ProfesseurEntity etu) throws DAOException;
 }

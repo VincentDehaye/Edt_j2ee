@@ -3,6 +3,7 @@ package servlets;
 import dao.DAOFactory;
 import dao.InterfaceDao.ProfesseurDao;
 import beans.ProfesseurEntity;
+import dao.ProfesseurDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +21,10 @@ public class Professeurs extends HttpServlet {
     public static final String CONF_DAO_FACTORY = "daofactory";
 
     private ProfesseurDao profDao;
+
     public void init() throws ServletException {
         /* Récupération d'une instance de notre DAO Utilisateur */
-        this.profDao = ( (DAOFactory) getServletContext().getAttribute( CONF_DAO_FACTORY )).getProfesseurDao();
+        this.profDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getProfesseurDao();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,15 +33,28 @@ public class Professeurs extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String mail = request.getParameter("mail");
-        if(mail==null){
+        String action = request.getParameter("action");
+        if (mail == null) {
             List<ProfesseurEntity> listProf = profDao.findAll();
             request.setAttribute("listeProf", listProf);
-            request.getRequestDispatcher("professeur.jsp").forward(request, response);
+        } else {
+            if (action != null && action.equals("create")) {
+                ProfesseurEntity newProf = new ProfesseurEntity();
+                newProf.setNom(request.getParameter("nom"));
+                newProf.setPrenom(request.getParameter("prenom"));
+                newProf.setMail(mail);
+                profDao.create(newProf);
+                request.setAttribute("created", "created");
+            } else if (action != null && action.equals("delete")) {
+                ProfesseurEntity prof = profDao.find(mail);
+                profDao.delete(prof);
+                request.setAttribute("deleted", "deleted");
+            } else {
+                ProfesseurEntity prof = profDao.find(mail);
+                request.setAttribute("prof", prof);
+            }
+
         }
-        else {
-            ProfesseurEntity prof = profDao.find(mail);
-            request.setAttribute("prof", prof);
-            request.getRequestDispatcher("professeur.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("professeur.jsp").forward(request, response);
     }
 }
