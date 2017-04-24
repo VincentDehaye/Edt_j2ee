@@ -15,4 +15,6 @@ public interface EtudiantDao {
 
     void create(EtudiantEntity etu) throws DAOException;
 
+    void delete(EtudiantEntity etu) throws DAOException;
+
 }

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page import="java.util.List"%>
+<%@ page import="beans.ProfesseurEntity" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -39,6 +40,34 @@
             }
         %>
     </table>
+
+    <%
+        obj = request.getAttribute("etu");
+        if(obj != null){
+            EtudiantEntity etu = (EtudiantEntity) obj;
+    %> <p>Résultat de la recherche par adresse mail :
+        <% out.println(etu.getIdEtudiant() + " " + etu.getNom() + " " +  etu.getPrenom() + " " + etu.getMail());%>
+    </p> <%
+        }
+    %>
+
+    <%
+        obj = request.getAttribute("deleted");
+        if(obj != null){
+
+    %> <p>Etudiant supprimé</p>
+    <%
+        }
+    %>
+
+    <%
+        obj = request.getAttribute("created");
+        if(obj != null){
+
+    %> <p>Etudiant créé</p>
+    <%
+        }
+    %>
 
 </body>
 </html>

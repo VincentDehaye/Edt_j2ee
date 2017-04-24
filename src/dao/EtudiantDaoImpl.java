@@ -1,5 +1,6 @@
 package dao;
 
+import beans.ProfesseurEntity;
 import dao.InterfaceDao.EtudiantDao;
 import beans.EtudiantEntity;
 
@@ -100,7 +101,7 @@ public class EtudiantDaoImpl implements EtudiantDao {
             int statut = preparedStatement.executeUpdate();
         /* Analyse du statut retourné par la requête d'insertion */
             if ( statut == 0 ) {
-                throw new DAOException( "Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table." );
+                throw new DAOException( "Échec de la création de l'étudiant, aucune ligne ajoutée dans la table." );
             }
         /* Récupération de l'id auto-généré par la requête d'insertion */
             valeursAutoGenerees = preparedStatement.getGeneratedKeys();
@@ -108,7 +109,7 @@ public class EtudiantDaoImpl implements EtudiantDao {
             /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
                 etu.setIdEtudiant( valeursAutoGenerees.getInt( 1 ) );
             } else {
-                throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
+                throw new DAOException( "Échec de la création de l'étudiant en base, aucun ID auto-généré retourné." );
             }
         } catch ( SQLException e ) {
             throw new DAOException( e );
@@ -116,5 +117,27 @@ public class EtudiantDaoImpl implements EtudiantDao {
             fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
         }
 
+    }
+
+    @Override
+    public void delete(EtudiantEntity etu) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+        String SQL_DELETE = "DELETE FROM etudiant WHERE IdEtudiant = ?";
+        try {
+        /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_DELETE, false, etu.getIdEtudiant());
+            int statut = preparedStatement.executeUpdate();
+        /* Analyse du statut retourné par la requête d'insertion */
+            if (statut == 0) {
+                throw new DAOException("Échec de la suppresion de l'étudiant.");
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+        }
     }
 }
