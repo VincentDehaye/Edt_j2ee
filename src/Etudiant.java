@@ -29,8 +29,7 @@ public class Etudiant {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<EtudiantEntity> findAll(@QueryParam("id") Integer id) {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String resultat = "";
+        //ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         List<EtudiantEntity> listEtu;
 
         if (id == null) {

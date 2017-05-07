@@ -23,4 +23,61 @@ public class LigneEdt {
         this.salle = salle;
         this.groupe = groupe;
     }
+
+    public String getUv() {
+        return uv;
+    }
+
+    public void setUv(String uv) {
+        this.uv = uv;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String uv) {
+        this.type = type;
+    }
+
+    public String getJour() {
+        return jour;
+    }
+
+    public void setJour(String uv) {
+        this.jour = jour;
+    }
+
+    public String getSalle() {
+        return salle;
+    }
+
+    public void setSalle(String salle) {
+        this.salle = salle;
+    }
+
+    public String getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(String groupe) {
+        this.groupe = groupe;
+    }
+
+    public Date getDebut() {
+        return debut;
+    }
+
+    public void setDebut(Date debut) {
+        this.debut = debut;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
 }

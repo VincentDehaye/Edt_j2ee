@@ -15,6 +15,7 @@ public class MyApplication extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add( Etudiant.class );
+        h.add( EmploiDuTemps.class );
         return h;
     }
 }
