@@ -14,7 +14,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,24 +27,28 @@ public class Etudiant {
     private EntityManager em = factory.createEntityManager();
 
     @GET
-    @Produces("text/plain")
-    public String findAll(@QueryParam("id") Integer id) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<EtudiantEntity> findAll(@QueryParam("id") Integer id) {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String resultat = "";
+        List<EtudiantEntity> listEtu;
 
         if (id == null) {
             Query jQuery = em.createQuery("Select e From EtudiantEntity e");
-            List<EtudiantEntity> listEtu = jQuery.getResultList();
+            listEtu = (List<EtudiantEntity>) em.createQuery("Select e From EtudiantEntity e")
+                    .getResultList();
 
             Iterator it = listEtu.iterator();
             while (it.hasNext()) {
                 EtudiantEntity etu = (EtudiantEntity) it.next();
                 etu.setParticipationsByIdEtudiant(null);
+            }
+            /*
                 try {
-                    String json = ow.writeValueAsString(etu);
+                    String json = ow.writeValueAsString(listEtu);
                     resultat += json;
                 } catch (IOException io) {}
-            }
+            */
         }
         else {
             Query jQuery = em.createQuery("Select e From EtudiantEntity e where e.id = :id");
@@ -50,12 +56,10 @@ public class Etudiant {
 
             EtudiantEntity etu = (EtudiantEntity)jQuery.getSingleResult();
             etu.setParticipationsByIdEtudiant(null);
-                try {
-                    String json = ow.writeValueAsString(etu);
-                    resultat += json;
-                } catch (IOException io) {}
+            listEtu = new ArrayList<EtudiantEntity>();
+            listEtu.add(etu);
         }
-        return resultat;
+        return listEtu;
     }
 
 
