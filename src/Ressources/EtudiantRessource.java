@@ -30,4 +30,20 @@ public class EtudiantRessource {
          return etudiantService.findEtudiant(id);
     }
 
+    /* TODO
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public EtudiantEntity addEtu(){
+        EtudiantEntity etudiantEntity = new EtudiantEntity();
+        etudiantEntity.setNom("Carre");
+        etudiantEntity.setPrenom("Fabien");
+        etudiantEntity.setSemestre("2");
+        etudiantEntity.setMail("fabien.carre@etu.utc.fr");
+        etudiantEntity.setCursus("GSM");
+        etudiantEntity.setNiveau("branche");
+
+        return etudiantService.addEtudiant(etudiantEntity);
+    }
+    */
+
 }

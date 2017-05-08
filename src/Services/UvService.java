@@ -39,4 +39,9 @@ public class UvService {
 
         return uv;
     }
+
+    public UvEntity addUv(){
+        UvEntity uv = new UvEntity();
+        return uv;
+    }
 }

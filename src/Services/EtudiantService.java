@@ -37,4 +37,12 @@ public class EtudiantService {
 
         return etu;
     }
+
+    public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity){
+        em.getTransaction().begin();
+        em.persist(etudiantEntity);
+        em.getTransaction().commit();
+
+        return etudiantEntity;
+    }
 }
