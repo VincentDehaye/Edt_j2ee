@@ -8,4 +8,4 @@
 !web
 !web/**
 
-**/dao.properties
+**/Services.properties

@@ -1,4 +1,4 @@
-/**
+package Ressources; /**
  * Created by Sylvain on 05/05/2017.
  */
 import javax.ws.rs.ApplicationPath;
@@ -14,8 +14,10 @@ public class MyApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
-        h.add( Etudiant.class );
-        h.add( EmploiDuTemps.class );
+        h.add( EtudiantRessource.class );
+        h.add( ScheduleRessource.class );
+        h.add( ProfesseurRessource.class );
+        h.add( UvRessource.class );
         return h;
     }
 }
