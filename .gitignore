@@ -9,4 +9,5 @@
 !web/**
 
 src/beans
+src/META-INF/persistence.xml
 **/Services.properties
