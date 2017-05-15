@@ -1,7 +1,7 @@
-package Ressources;
+package Services;
 
 import beans.UvEntity;
-import Services.UvService;
+import Ressources.UvService;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

@@ -1,6 +1,6 @@
-package Ressources;
+package Services;
 
-import Services.ProfesseurService;
+import Ressources.ProfesseurService;
 import beans.ProfesseurEntity;
 
 import javax.ws.rs.GET;

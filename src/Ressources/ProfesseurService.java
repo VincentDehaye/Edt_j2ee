@@ -1,11 +1,9 @@
-package Services;
+package Ressources;
 
+import Factories.EMF;
 import beans.ProfesseurEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,8 +11,8 @@ import java.util.List;
  * Created by Sylvain on 08/05/2017.
  */
 public class ProfesseurService {
-    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
-    private EntityManager em = factory.createEntityManager();
+    @PersistenceContext
+    private EntityManager em = EMF.createEntityManager();
 
     public List<ProfesseurEntity> findProfesseurs() {
         List<ProfesseurEntity> listEtu = (List<ProfesseurEntity>) em.createQuery("Select p From ProfesseurEntity p")

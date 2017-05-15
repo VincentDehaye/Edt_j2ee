@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Collection;
 
 /**
- * Created by Sylvain on 07/05/2017.
+ * Created by Sylvain on 15/05/2017.
  */
 public class HoraireEntity {
     private int idHoraire;

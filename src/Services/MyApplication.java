@@ -1,4 +1,4 @@
-package Ressources; /**
+package Services; /**
  * Created by Sylvain on 05/05/2017.
  */
 import javax.ws.rs.ApplicationPath;

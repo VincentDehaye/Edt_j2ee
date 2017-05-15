@@ -1,10 +1,10 @@
-package Ressources;
+package Services;
 
 /**
  * Created by Sylvain on 05/05/2017.
  */
 
-import Services.EtudiantService;
+import Ressources.EtudiantService;
 import beans.EtudiantEntity;
 
 

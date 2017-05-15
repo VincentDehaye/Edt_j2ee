@@ -1,7 +1,7 @@
-package Ressources;
+package Services;
 
-import Services.LigneEdt;
-import Services.ScheduleService;
+import Ressources.LigneEdt;
+import Ressources.ScheduleService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
