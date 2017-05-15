@@ -8,4 +8,6 @@
 !web
 !web/**
 
-**/Ressources.properties
+src/beans
+src/META-INF/persistence.xml
+**/Services.properties
