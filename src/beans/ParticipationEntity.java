@@ -1,7 +1,7 @@
 package beans;
 
 /**
- * Created by Sylvain on 07/05/2017.
+ * Created by vincent on 08/05/17.
  */
 public class ParticipationEntity {
     private int idParticipation;
