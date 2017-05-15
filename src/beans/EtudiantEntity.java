@@ -1,20 +1,20 @@
 package beans;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * Created by vincent on 08/05/17.
+ * Created by vincent on 15/05/17.
  */
 public class EtudiantEntity {
     private int idEtudiant;
     private String nom;
     private String prenom;
     private String mail;
-    private byte[] photo;
     private String semestre;
     private String cursus;
     private String niveau;
+    private String login;
+    private String password;
     private Collection<ParticipationEntity> participationsByIdEtudiant;
 
     public int getIdEtudiant() {
@@ -49,14 +49,6 @@ public class EtudiantEntity {
         this.mail = mail;
     }
 
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
     public String getSemestre() {
         return semestre;
     }
@@ -81,6 +73,22 @@ public class EtudiantEntity {
         this.niveau = niveau;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,10 +100,11 @@ public class EtudiantEntity {
         if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
         if (prenom != null ? !prenom.equals(that.prenom) : that.prenom != null) return false;
         if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
-        if (!Arrays.equals(photo, that.photo)) return false;
         if (semestre != null ? !semestre.equals(that.semestre) : that.semestre != null) return false;
         if (cursus != null ? !cursus.equals(that.cursus) : that.cursus != null) return false;
         if (niveau != null ? !niveau.equals(that.niveau) : that.niveau != null) return false;
+        if (login != null ? !login.equals(that.login) : that.login != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
 
         return true;
     }
@@ -106,10 +115,11 @@ public class EtudiantEntity {
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (prenom != null ? prenom.hashCode() : 0);
         result = 31 * result + (mail != null ? mail.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(photo);
         result = 31 * result + (semestre != null ? semestre.hashCode() : 0);
         result = 31 * result + (cursus != null ? cursus.hashCode() : 0);
         result = 31 * result + (niveau != null ? niveau.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 

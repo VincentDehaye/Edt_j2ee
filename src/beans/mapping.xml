@@ -45,9 +45,6 @@
             <basic name="mail">
                 <column name="Mail"/>
             </basic>
-            <basic name="photo">
-                <column name="Photo"/>
-            </basic>
             <basic name="semestre">
                 <column name="Semestre"/>
             </basic>
@@ -56,6 +53,12 @@
             </basic>
             <basic name="niveau">
                 <column name="Niveau"/>
+            </basic>
+            <basic name="login">
+                <column name="Login"/>
+            </basic>
+            <basic name="password">
+                <column name="Password"/>
             </basic>
             <one-to-many name="participationsByIdEtudiant" mapped-by="etudiantByEtu"
                          target-entity="beans.ParticipationEntity"/>
@@ -108,8 +111,11 @@
             <basic name="mail">
                 <column name="Mail"/>
             </basic>
-            <basic name="photo">
-                <column name="Photo"/>
+            <basic name="login">
+                <column name="Login"/>
+            </basic>
+            <basic name="password">
+                <column name="Password"/>
             </basic>
             <one-to-many name="uvsByIdProfesseur" mapped-by="professeurByResponsable" target-entity="beans.UvEntity"/>
         </attributes>
