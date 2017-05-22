@@ -5,6 +5,7 @@ package Services;
  */
 
 import Ressources.EtudiantService;
+import Sessions.Secured;
 import beans.EtudiantEntity;
 
 
@@ -24,6 +25,7 @@ public class EtudiantRessource {
     }
 
     @GET
+    @Secured
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public EtudiantEntity findOne(@PathParam("id") Integer id) {

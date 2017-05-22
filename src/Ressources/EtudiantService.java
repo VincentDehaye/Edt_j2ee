@@ -36,6 +36,16 @@ public class EtudiantService {
         return etu;
     }
 
+    public EtudiantEntity findEtudiantByLogin(String login) {
+        Query jQuery = em.createQuery("Select e From EtudiantEntity e where e.login = :login");
+        jQuery.setParameter("login", login);
+
+        EtudiantEntity etu = (EtudiantEntity)jQuery.getSingleResult();
+        etu.setParticipationsByIdEtudiant(null);
+
+        return etu;
+    }
+
     public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity){
         em.getTransaction().begin();
         em.persist(etudiantEntity);

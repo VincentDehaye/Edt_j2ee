@@ -1,6 +1,9 @@
 package Services; /**
  * Created by Sylvain on 05/05/2017.
  */
+import Sessions.Authentification;
+import Sessions.MyEndpoint;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -18,6 +21,8 @@ public class MyApplication extends Application {
         h.add( ScheduleRessource.class );
         h.add( ProfesseurRessource.class );
         h.add( UvRessource.class );
+        h.add(Authentification.class);
+        h.add(MyEndpoint.class);
         return h;
     }
 }
