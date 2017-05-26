@@ -5,47 +5,79 @@ package Services;
  */
 
 import Ressources.EtudiantService;
-import Sessions.Secured;
+import Sessions.AuthentificationFilter;
 import beans.EtudiantEntity;
 
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 
 @Path("/etudiants")
 public class EtudiantRessource {
     private EtudiantService etudiantService = new EtudiantService();
+    @HeaderParam("Authorization") String authorizationHeader;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EtudiantEntity> findAll() {
-        return etudiantService.findEtudiants();
+    public Response findAll() throws Exception  {
+        try{
+            AuthentificationFilter.filter(authorizationHeader);
+            return Response.status(200)
+                    .entity(etudiantService.findEtudiants())
+                    .build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
 
     @GET
-    @Secured
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public EtudiantEntity findOne(@PathParam("id") Integer id) {
-         return etudiantService.findEtudiant(id);
+    public Response findOne(@PathParam("id") Integer id) throws Exception {
+        try{
+            AuthentificationFilter.filter(authorizationHeader);
+            return Response.status(200)
+                    .entity(etudiantService.findEtudiant(id))
+                    .build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
 
-    /* TODO
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public EtudiantEntity addEtu(){
-        EtudiantEntity etudiantEntity = new EtudiantEntity();
-        etudiantEntity.setNom("Carre");
-        etudiantEntity.setPrenom("Fabien");
-        etudiantEntity.setSemestre("2");
-        etudiantEntity.setMail("fabien.carre@etu.utc.fr");
-        etudiantEntity.setCursus("GSM");
-        etudiantEntity.setNiveau("branche");
-
-        return etudiantService.addEtudiant(etudiantEntity);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addOne(EtudiantEntity etudiantEntity) throws Exception  {
+        try{
+            AuthentificationFilter.filter(authorizationHeader);
+            return Response.status(200)
+                    .entity(etudiantService.addEtudiant(etudiantEntity))
+                    .build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
-    */
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteOne(EtudiantEntity etudiantEntity) throws Exception  {
+        try{
+            AuthentificationFilter.filter(authorizationHeader);
+            etudiantService.RemoveEtudiantByLogin(etudiantEntity.getLogin());
+            return Response.status(200)
+                    .entity("Deleted")
+                    .build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
 
 }

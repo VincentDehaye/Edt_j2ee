@@ -38,8 +38,21 @@ public class UvService {
         return uv;
     }
 
-    public UvEntity addUv(){
-        UvEntity uv = new UvEntity();
-        return uv;
+    public UvEntity addUv(UvEntity uvEntity){
+        em.getTransaction().begin();
+        em.persist(uvEntity);
+        em.getTransaction().commit();
+
+        return uvEntity;
+    }
+
+    public void RemoveUvById(Integer id) {
+        Query jQuery = em.createQuery("Select u From UvEntity u where u.idUv = :id");
+        jQuery.setParameter("id", id);
+
+        UvEntity uv = (UvEntity)jQuery.getSingleResult();
+        em.getTransaction().begin();
+        em.remove(uv);
+        em.getTransaction().commit();
     }
 }

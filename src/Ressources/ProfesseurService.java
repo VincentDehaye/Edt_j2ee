@@ -1,6 +1,7 @@
 package Ressources;
 
 import Factories.EMF;
+import Sessions.Cryptage;
 import beans.ProfesseurEntity;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class ProfesseurService {
         while (it.hasNext()) {
             ProfesseurEntity prof = (ProfesseurEntity) it.next();
             prof.setUvsByIdProfesseur(null);
+            prof.setPassword(null);
         }
         return listEtu;
     }
@@ -30,7 +32,34 @@ public class ProfesseurService {
         jQuery.setParameter("id", id);
         ProfesseurEntity prof = (ProfesseurEntity)jQuery.getSingleResult();
         prof.setUvsByIdProfesseur(null);
+        prof.setPassword(null);
         return prof;
     }
 
+    public ProfesseurEntity findProfesseurByLogin(String login) {
+        Query jQuery = em.createQuery("Select p From ProfesseurEntity p where p.login = :login");
+        jQuery.setParameter("login", login);
+        ProfesseurEntity prof = (ProfesseurEntity)jQuery.getSingleResult();
+        prof.setUvsByIdProfesseur(null);
+        return prof;
+    }
+
+
+    public ProfesseurEntity addProfesseur (ProfesseurEntity professeurEntity){
+        professeurEntity.setPassword(Cryptage.crypterMdp(professeurEntity.getPassword()));
+        em.getTransaction().begin();
+        em.persist(professeurEntity);
+        em.getTransaction().commit();
+        return professeurEntity;
+    }
+
+    public void RemoveProfesseurByLogin(String login) {
+        Query jQuery = em.createQuery("Select p From ProfesseurEntity p where p.login = :login");
+        jQuery.setParameter("login", login);
+
+        ProfesseurEntity prof = (ProfesseurEntity)jQuery.getSingleResult();
+        em.getTransaction().begin();
+        em.remove(prof);
+        em.getTransaction().commit();
+    }
 }

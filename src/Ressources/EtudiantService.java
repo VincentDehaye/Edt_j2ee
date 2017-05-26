@@ -1,6 +1,7 @@
 package Ressources;
 
 import Factories.EMF;
+import Sessions.Cryptage;
 import beans.EtudiantEntity;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class EtudiantService {
         while (it.hasNext()) {
             EtudiantEntity etu = (EtudiantEntity) it.next();
             etu.setParticipationsByIdEtudiant(null);
+            etu.setPassword(null);
         }
         return listEtu;
     }
@@ -31,7 +33,10 @@ public class EtudiantService {
         jQuery.setParameter("id", id);
 
         EtudiantEntity etu = (EtudiantEntity)jQuery.getSingleResult();
-        etu.setParticipationsByIdEtudiant(null);
+        if(etu != null) {
+            etu.setParticipationsByIdEtudiant(null);
+            etu.setPassword(null);
+        }
 
         return etu;
     }
@@ -41,16 +46,27 @@ public class EtudiantService {
         jQuery.setParameter("login", login);
 
         EtudiantEntity etu = (EtudiantEntity)jQuery.getSingleResult();
-        etu.setParticipationsByIdEtudiant(null);
-
+        if(etu!= null) {
+            etu.setParticipationsByIdEtudiant(null);
+        }
         return etu;
     }
 
     public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity){
+        etudiantEntity.setPassword(Cryptage.crypterMdp(etudiantEntity.getPassword()));
         em.getTransaction().begin();
         em.persist(etudiantEntity);
         em.getTransaction().commit();
-
         return etudiantEntity;
+    }
+
+    public void RemoveEtudiantByLogin(String login) {
+        Query jQuery = em.createQuery("Select e From EtudiantEntity e where e.login = :login");
+        jQuery.setParameter("login", login);
+
+        EtudiantEntity etu = (EtudiantEntity)jQuery.getSingleResult();
+        em.getTransaction().begin();
+        em.remove(etu);
+        em.getTransaction().commit();
     }
 }
