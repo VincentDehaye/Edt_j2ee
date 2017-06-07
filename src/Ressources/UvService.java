@@ -1,9 +1,14 @@
 package Ressources;
 
 import Factories.EMF;
+import beans.ProfesseurEntity;
 import beans.UvEntity;
 
 import javax.persistence.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Connection;
 import java.util.Iterator;
 import java.util.List;
 

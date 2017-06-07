@@ -40,8 +40,8 @@ public class Authentification {
             String token = tokenJwt(username);
             // Return the token on the response
             //NewCookie cookie = new NewCookie("token", "token");
-            NewCookie cookie = new NewCookie("sessionToken", token, "/Edt_jee_war_exploded", "localhost", "comment", 1200, false);
-            return Response.ok("OK").cookie(cookie).build();
+            //NewCookie cookie = new NewCookie("sessionToken", token, "/Edt_jee_war_exploded", "localhost", "comment", 1200, false);
+            return Response.ok("OK").entity(token).build();
 
         } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
