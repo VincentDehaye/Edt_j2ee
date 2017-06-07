@@ -20,3 +20,4 @@ public class Credentials implements Serializable {
 
     // Getters and setters omitted
 }
+

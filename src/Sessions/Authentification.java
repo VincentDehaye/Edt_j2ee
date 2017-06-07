@@ -7,6 +7,7 @@ import beans.ProfesseurEntity;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import org.json.JSONObject;
 
 
 import javax.ws.rs.*;
@@ -37,10 +38,8 @@ public class Authentification {
             authenticate(username, password);
 
             // Issue a token for the user
-            String token = tokenJwt(username);
-            // Return the token on the response
-            //NewCookie cookie = new NewCookie("token", "token");
-            //NewCookie cookie = new NewCookie("sessionToken", token, "/Edt_jee_war_exploded", "localhost", "comment", 1200, false);
+            Token token = new Token();
+            token.setBearer(tokenJwt(username));
             return Response.ok("OK").entity(token).build();
 
         } catch (Exception e) {
