@@ -40,6 +40,7 @@ public class AuthentificationFilter{
         try {
             Algorithm algorithm = Algorithm.HMAC256("secret");
             JWTVerifier verifier = JWT.require(algorithm)
+                    .acceptExpiresAt(5)
                     .build(); //Reusable verifier instance
             DecodedJWT jwt = verifier.verify(token);
         } catch (UnsupportedEncodingException exception){
