@@ -64,6 +64,22 @@ public class EtudiantRessource {
         }
     }
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/search")
+    public Response searchEtudiantsByLogin(EtudiantEntity etudiantEntity) throws Exception  {
+        try{
+            AuthentificationFilter.filter(authorizationHeader);
+            return Response.status(200)
+                    .entity(etudiantService.findAllEtudiantsByLogin(etudiantEntity.getLogin()))
+                    .build();
+        }
+        catch (Exception e) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

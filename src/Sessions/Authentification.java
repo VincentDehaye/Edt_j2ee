@@ -7,14 +7,15 @@ import beans.ProfesseurEntity;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import org.json.JSONObject;
+import org.apache.commons.lang.time.DateUtils;
 
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
+
 /**
  * Created by Sylvain on 21/05/2017.
  */
@@ -87,10 +88,13 @@ public class Authentification {
 
     private String tokenJwt(String username) {
         String token = new String();
+        Date date = new Date();
+        date = DateUtils.addMinutes(date, 30);
         try {
             Algorithm algorithm = Algorithm.HMAC256("secret");
             token = JWT.create()
                     .withIssuer(username)
+                    .withExpiresAt(date)
                     .sign(algorithm);
         } catch (UnsupportedEncodingException exception) {
             //UTF-8 encoding not supported
