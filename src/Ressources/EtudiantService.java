@@ -73,12 +73,20 @@ public class EtudiantService {
         return res;
     }
 
-    public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity){
-        etudiantEntity.setPassword(Cryptage.crypterMdp(etudiantEntity.getPassword()));
-        em.getTransaction().begin();
-        em.persist(etudiantEntity);
-        em.getTransaction().commit();
-        return etudiantEntity;
+    public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity)throws Exception{
+        if ( etudiantEntity.getPassword().length() < 3 ) {
+            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
+        }
+        else if (etudiantEntity.getPassword() == null) {
+            throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
+        }
+        else{
+            etudiantEntity.setPassword(Cryptage.crypterMdp(etudiantEntity.getPassword()));
+            em.getTransaction().begin();
+            em.persist(etudiantEntity);
+            em.getTransaction().commit();
+            return etudiantEntity;
+        }
     }
 
     public void RemoveEtudiantByLogin(String login) {
