@@ -74,7 +74,7 @@ public class EtudiantService {
     }
 
     public EtudiantEntity addEtudiant(EtudiantEntity etudiantEntity)throws Exception{
-        if ( etudiantEntity.getPassword().length() < 3 ) {
+        if ( etudiantEntity.getPassword().length() < 6 ) {
             throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
         }
         else if (etudiantEntity.getPassword() == null) {

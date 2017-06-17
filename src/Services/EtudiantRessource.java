@@ -40,6 +40,12 @@ public class EtudiantRessource {
     public Response findOne(@PathParam("id") Integer id) throws Exception {
         try{
             AuthentificationFilter.filter(authorizationHeader);
+            try {
+                EtudiantEntity etu = etudiantService.findEtudiant(id);
+            }
+            catch (Exception e){
+                return Response.status(404).build();
+            }
             return Response.status(200)
                     .entity(etudiantService.findEtudiant(id))
                     .build();
